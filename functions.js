@@ -1,4 +1,5 @@
 const { transporter } = require('./config')
+const bienvenidaMail = require('./templates/bienvenida')
 
 class Mailing {
     constructor(
@@ -30,7 +31,7 @@ class Mailing {
                 from: `"Corporación ENERJET ⚡" <${process.env.EMAIL_USER}>`, // sender address
                 to: `${this.email}, chamblues@gmail.com`, // list of receivers
                 subject: "Tu garantía ha sido activada", // Subject line
-                html: `<b>Email Bienvenida <br> datos: <br> ${this.name}, ${this.email} </b>`, // html body
+                html: bienvenidaMail(this.name), // html body
             });
 
             return {

@@ -1,12 +1,17 @@
 # Overview
 La aplicación API Rest es para activar los eventos de envíos de emails.
 ## Uso
+Todas las consultas se deben hacer con el siguiente header authorization:
+```
+'Authorization': 'Bearer ' + (TOKEN BRINDADO POR INTERNO)
+```
 ### Email Bienvenida Endpoint
 Method **POST**
+Headers **Content-Type: application/json**
 ```
 https://enerjet.com.pe/mail/api/gardi/bienvenida
 ```
-
+#
 Enviar JSON con los siguientes parámetros, ejemplo:
 ```json
 {
