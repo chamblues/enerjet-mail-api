@@ -1,4 +1,4 @@
-const bienvenidaMail = (name) => {
+const bienvenidaMail = (name, qr_code) => {
     return `
     <!doctype html>
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -168,7 +168,7 @@ const bienvenidaMail = (name) => {
                         <tr>
                           <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                             <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#000000;">
-                              <h1>¡Felicidades ${name}!</h1> Confirmamos que la GARANTÍA DIGITAL de tu batería Enerjet (código de batería) ha sido activada correctamente. Aquí te mostramos los beneficios de usar Gardi junto a nuestros términos y condiciones.
+                              <h1>¡Felicidades ${name}!</h1> Confirmamos que la GARANTÍA DIGITAL de tu batería Enerjet ${qr_code} ha sido activada correctamente. Aquí te mostramos los beneficios de usar Gardi junto a nuestros términos y condiciones.
                             </div>
                           </td>
                         </tr>

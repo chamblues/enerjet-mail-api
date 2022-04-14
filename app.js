@@ -66,17 +66,17 @@ const checkAuth = (req, res, next) => {
 server.post('/api/gardi/bienvenida', checkAuth, async (req, res) => {
     try {
         
-        const { name, email } = req.body
+        const data = req.body
 
-        if (name === undefined || email === undefined) {
-            throw new Error('You made a bad request, parameters name and email are required.')
+        if (data.name === undefined || data.email === undefined || data.qr_code === undefined) {
+            throw new Error('You made a bad request, parameters name, email and qr_code are required.')
         }
 
-        if (!isEmail(email)) {
+        if (!isEmail(data.email)) {
             throw new Error('The email is not valid')
         }
 
-        const mailing = new Mailing(name, email)
+        const mailing = new Mailing(data)
         const bienvenida = await mailing.bienvenida()
 
         return res.status(200).json(bienvenida)
@@ -89,5 +89,32 @@ server.post('/api/gardi/bienvenida', checkAuth, async (req, res) => {
         })
     }
 
+})
+
+server.post('/api/gardi/mantenimiento', checkAuth, async (req, res) => {
+    try {
+        
+        const data = req.body
+
+        if (data.name === undefined || data.email === undefined || data.qr_code === undefined || data.service_name === undefined || data.service_address === undefined || data.maintenance_date === undefined) {
+            throw new Error('You made a bad request, parameters name, email, qr_code, etc. are required.')
+        }
+
+        if (!isEmail(data.email)) {
+            throw new Error('The email is not valid')
+        }
+
+        const mailing = new Mailing(data)
+        const bienvenida = await mailing.mantenimiento()
+
+        return res.status(200).json(bienvenida)
+        
+    } catch (error) {
+        return res.status(400).json({
+            status: 'failed',
+            message: error.message,
+
+        })
+    }
 
 })
