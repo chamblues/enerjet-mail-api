@@ -32,7 +32,6 @@ Headers **Content-Type: application/json**
 ```
 https://enerjet.com.pe/mail/api/gardi/bienvenida
 ```
-#
 Enviar JSON con los siguientes parámetros, ejemplo:
 ```json
 {
@@ -41,6 +40,7 @@ Enviar JSON con los siguientes parámetros, ejemplo:
     "qr_code": "3NI87K"
 }
 ```
+#
 
 ### Email Mantenimiento Endpoint
 Method **POST**
@@ -48,7 +48,6 @@ Headers **Content-Type: application/json**
 ```
 https://enerjet.com.pe/mail/api/gardi/mantenimiento
 ```
-#
 Enviar JSON con los siguientes parámetros, ejemplo:
 ```json
 {
