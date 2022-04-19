@@ -60,9 +60,61 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 }
 ```
 
+#
 
-Continuará...
-- Endpoints pendientes:
--- Recordatorio mantenimiento
--- Advertencia pérdida de garantía
--- Renovación
+### Email Recordatorio Endpoint
+Method **POST**
+Headers **Content-Type: application/json**
+```
+https://enerjet.com.pe/mail/api/gardi/recordatorio
+```
+Enviar JSON con los siguientes parámetros, ejemplo:
+```json
+{
+    "name": "Christian",
+    "email": "christianchangh@gmail.com",
+    "qr_code": "3J19ZX",
+    "service_name": "Enerjet Service 01",
+    "service_address": "Av. Arequipa 1111, Lima",
+    "maintenance_date": "12/04/2022",
+    "guarantee": "9"
+}
+```
+#
+
+### Email Pérdida de Garantía Endpoint
+Method **POST**
+Headers **Content-Type: application/json**
+```
+https://enerjet.com.pe/mail/api/gardi/recordatorio
+```
+Enviar JSON con los siguientes parámetros, ejemplo:
+```json
+{
+    "name": "Christian",
+    "email": "christianchangh@gmail.com",
+    "qr_code": "3J19ZX"
+}
+```
+
+#
+
+### Email Renovación Endpoint
+Method **POST**
+Headers **Content-Type: application/json**
+```
+https://enerjet.com.pe/mail/api/gardi/recordatorio
+```
+Enviar JSON con los siguientes parámetros, ejemplo:
+```json
+{
+    "name": "Christian",
+    "email": "christianchangh@gmail.com",
+    "qr_code": "3J19ZX",
+    "service_name": "Enerjet Service 01",
+    "service_address": "Av. Arequipa 1111, Lima",
+    "purchase_date": "22/01/2022"
+}
+```
+
+That's it... ¡Happy coding!
