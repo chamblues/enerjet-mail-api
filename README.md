@@ -86,7 +86,7 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 Method **POST**
 Headers **Content-Type: application/json**
 ```
-https://enerjet.com.pe/mail/api/gardi/recordatorio
+https://enerjet.com.pe/mail/api/gardi/perdida-garantia
 ```
 Enviar JSON con los siguientes parámetros, ejemplo:
 ```json
@@ -103,7 +103,7 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 Method **POST**
 Headers **Content-Type: application/json**
 ```
-https://enerjet.com.pe/mail/api/gardi/recordatorio
+https://enerjet.com.pe/mail/api/gardi/renovacion
 ```
 Enviar JSON con los siguientes parámetros, ejemplo:
 ```json
