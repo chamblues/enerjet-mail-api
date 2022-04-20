@@ -30,7 +30,7 @@ En el caso de que exista algún error se enviará un JSON el key status será "f
 Method **POST**
 Headers **Content-Type: application/json**
 ```
-https://enerjet.com.pe/mail/api/gardi/bienvenida
+https://www.enerjet.com.pe/mail/api/gardi/bienvenida
 ```
 Enviar JSON con los siguientes parámetros, ejemplo:
 ```json
@@ -46,7 +46,7 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 Method **POST**
 Headers **Content-Type: application/json**
 ```
-https://enerjet.com.pe/mail/api/gardi/mantenimiento
+https://www.enerjet.com.pe/mail/api/gardi/mantenimiento
 ```
 Enviar JSON con los siguientes parámetros, ejemplo:
 ```json
@@ -66,7 +66,7 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 Method **POST**
 Headers **Content-Type: application/json**
 ```
-https://enerjet.com.pe/mail/api/gardi/recordatorio
+https://www.enerjet.com.pe/mail/api/gardi/recordatorio
 ```
 Enviar JSON con los siguientes parámetros, ejemplo:
 ```json
@@ -86,7 +86,7 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 Method **POST**
 Headers **Content-Type: application/json**
 ```
-https://enerjet.com.pe/mail/api/gardi/perdida-garantia
+https://www.enerjet.com.pe/mail/api/gardi/perdida-garantia
 ```
 Enviar JSON con los siguientes parámetros, ejemplo:
 ```json
@@ -103,7 +103,7 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 Method **POST**
 Headers **Content-Type: application/json**
 ```
-https://enerjet.com.pe/mail/api/gardi/renovacion
+https://www.enerjet.com.pe/mail/api/gardi/renovacion
 ```
 Enviar JSON con los siguientes parámetros, ejemplo:
 ```json
