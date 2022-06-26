@@ -208,3 +208,33 @@ server.post('/api/gardi/renovacion', checkAuth, async (req, res) => {
     }
 
 })
+
+
+
+server.post('/api/gardi/completa-activacion', checkAuth, async (req, res) => {
+    try {
+        
+        const data = req.body
+
+        if (data.name === undefined) {
+            throw new Error('You made a bad request, parameters name, email and qr_code are required.')
+        }
+
+        if (!isEmail(data.email)) {
+            throw new Error('The email is not valid')
+        }
+
+        const mailing = new Mailing(data)
+        const completaActivacion = await mailing.completaActivacion()
+
+        return res.status(200).json(completaActivacion)
+        
+    } catch (error) {
+        return res.status(400).json({
+            status: 'failed',
+            message: error.message,
+
+        })
+    }
+
+})

@@ -157,6 +157,32 @@ class Mailing {
 
     }
 
+    async completaActivacion() {
+
+        let sendMail;
+
+        try {
+            sendMail = await transporter.sendMail({
+                from: `"Corporación ENERJET ⚡" <${process.env.EMAIL_USER}>`, // sender address
+                to: `${this.email}, garantiavirtual@corporacionenerjet.com.pe`, // list of receivers
+                subject: `¡Estás a 1 paso de ganarte una TV de 58"! Completa tu garantía digital y participa`, // Subject line
+                html: renovacionMail(this.name), // html body
+            });
+
+            return {
+                status: 'successful',
+                message: 'The email was sent',
+            }
+
+        } catch (error) {
+            return {
+                status: 'failed',
+                message: 'There was a problem sending the email'
+            }
+        }
+
+    }
+
 
 }
 
