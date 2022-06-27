@@ -117,4 +117,20 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 }
 ```
 
+#
+
+### Email Renovación Endpoint
+Method **POST**
+Headers **Content-Type: application/json**
+```
+https://www.enerjet.com.pe/mail/api/gardi/completaActivacion
+```
+Enviar JSON con los siguientes parámetros, ejemplo:
+```json
+{
+    "name": "Christian",
+    "email": "christianchangh@gmail.com"
+}
+```
+
 That's it... ¡Happy coding!
