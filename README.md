@@ -119,11 +119,11 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 
 #
 
-### Email Renovación Endpoint
+### Email Completa Activación Endpoint
 Method **POST**
 Headers **Content-Type: application/json**
 ```
-https://www.enerjet.com.pe/mail/api/gardi/completaActivacion
+https://www.enerjet.com.pe/mail/api/gardi/completa-activacion
 ```
 Enviar JSON con los siguientes parámetros, ejemplo:
 ```json

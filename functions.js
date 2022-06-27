@@ -4,6 +4,7 @@ const mantenimientoMail = require('./templates/mantenimiento')
 const recordatorioMail = require('./templates/recordatorio')
 const perdidaGarantiaMail = require('./templates/perdida-garantia')
 const renovacionMail = require('./templates/renovacion')
+const completaActivacionMail = require('./templates/completa-activacion')
 
 class Mailing {
     constructor(
@@ -166,7 +167,7 @@ class Mailing {
                 from: `"Corporación ENERJET ⚡" <${process.env.EMAIL_USER}>`, // sender address
                 to: `${this.email}, garantiavirtual@corporacionenerjet.com.pe`, // list of receivers
                 subject: `¡Estás a 1 paso de ganarte una TV de 58"! Completa tu garantía digital y participa`, // Subject line
-                html: renovacionMail(this.name), // html body
+                html: completaActivacionMail(this.name), // html body
             });
 
             return {
