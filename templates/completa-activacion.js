@@ -1,4 +1,4 @@
-const mantenimientoMail = (name) => {
+const mantenimientoMail = (name, service_address) => {
     return `
     <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -210,7 +210,7 @@ const mantenimientoMail = (name) => {
                     <tr>
                       <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                         <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:16px;line-height:1.4;text-align:center;color:#000000;">
-                          <h1>¡Hola ${name}!</h1> Realizaste el registro de tu batería y no completaste la activación de tu Garantía Digital. Te invitamos a completar la activación en (dirección del Enerjet Service elegido) o en el Distribuidor Enerjet de tu preferencia y disfrutar los beneficios de GARDI:
+                          <h1>¡Hola ${name}!</h1> Realizaste el registro de tu batería y no completaste la activación de tu Garantía Digital. Te invitamos a completar la activación en ${service_address} o en el Distribuidor Enerjet de tu preferencia y disfrutar los beneficios de GARDI:
                         </div>
                       </td>
                     </tr>
