@@ -167,7 +167,7 @@ class Mailing {
                 from: `"Corporación ENERJET ⚡" <${process.env.EMAIL_USER}>`, // sender address
                 to: `${this.email}, garantiavirtual@corporacionenerjet.com.pe`, // list of receivers
                 subject: `¡Estás a 1 paso de ganarte una TV de 58"! Completa tu garantía digital y participa`, // Subject line
-                html: completaActivacionMail(this.name), // html body
+                html: completaActivacionMail(this.name, this.service_address), // html body
             });
 
             return {

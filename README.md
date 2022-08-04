@@ -129,7 +129,7 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 ```json
 {
     "name": "Christian",
-    "email": "christianchangh@gmail.com"
+    "email": "christianchangh@gmail.com",
 }
 ```
 
