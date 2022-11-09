@@ -5,6 +5,7 @@ const recordatorioMail = require('./templates/recordatorio')
 const perdidaGarantiaMail = require('./templates/perdida-garantia')
 const renovacionMail = require('./templates/renovacion')
 const completaActivacionMail = require('./templates/completa-activacion')
+const CallServicesMail = require('./templates/call-services')
 
 class Mailing {
     constructor(
@@ -15,7 +16,11 @@ class Mailing {
             service_address,
             purchase_date,
             maintenance_date,
-            guarantee
+            guarantee,
+            idSolicitud,
+            Cliente,
+            observacion,
+            CodigoProducto
         } = data
     ) {
         this.name = name;
@@ -26,8 +31,38 @@ class Mailing {
         this.purchase_date = purchase_date;
         this.maintenance_date = maintenance_date;
         this.guarantee = guarantee;
+
+        this.idSolicitud = idSolicitud;
+        this.Cliente = Cliente;
+        this.observacion = observacion;
+        this.CodigoProducto = CodigoProducto;
     }
 
+    async CallServices() {
+
+        let sendMail;
+
+        try {
+            sendMail = await transporter.sendMail({
+                from: `"[PRUEBAS] Corporación ENERJET ⚡" <${process.env.EMAIL_USER}>`, // sender address
+                to: `${this.email}, castecnico@corporacionenerjet.com.pe`, // list of receivers
+                subject: `Nuevo registro de solicitud de garantía ${this.idSolicitud}`, // Subject line
+                html: CallServicesMail(this.idSolicitud, this.Cliente, this.observacion, this.CodigoProducto), // html body
+            });
+
+            return {
+                status: 'successful',
+                message: 'The email was sent',
+            }
+
+        } catch (error) {
+            return {
+                status: 'failed',
+                message: 'There was a problem sending the email '+ error
+            }
+        }
+
+    }
     async bienvenida() {
 
         let sendMail;

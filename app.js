@@ -63,6 +63,34 @@ const checkAuth = (req, res, next) => {
     
 }
 
+server.post('/api/gardi/callService', checkAuth, async (req, res) => {
+    try {
+        debugger;
+        const data = req.body
+        
+        if (data.idSolicitud === undefined || data.Cliente === undefined || data.observacion === undefined || data.CodigoProducto === undefined) {
+            throw new Error('You made a bad request, parameters idSolicitud, Cliente, observacion and CodigoProducto are required.')
+        }
+
+        if (!isEmail(data.email)) {
+            throw new Error('The email is not valid')
+        }
+
+        const mailing = new Mailing(data)
+        const callServices = await mailing.CallServices()
+
+        return res.status(200).json(callServices)
+        
+    } catch (error) {
+        return res.status(400).json({
+            status: 'failed2',
+            message: error.message,
+
+        })
+    }
+
+})
+
 server.post('/api/gardi/bienvenida', checkAuth, async (req, res) => {
     try {
         
