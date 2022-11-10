@@ -108,7 +108,7 @@ const CallServicesMail = (idSolicitud, Cliente, observacion, CodigoProducto) => 
                               <tbody>
                                 <tr>
                                      <td style="width:650px;">
-                     <img height="auto" src="https://enerjet.com.pe/mailings/2022/callServices/gardi_logo_rec.png" style="background-color:#0b0b0b;border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="650" />
+                                     <img height="auto" src="https://enerjet.com.pe/mailings/2022/callServices/gardi_logo_rec.png" style="background-color:#0b0b0b;border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="650" />
                                  
                                   </td>
                                 </tr>

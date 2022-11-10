@@ -44,8 +44,8 @@ class Mailing {
 
         try {
             sendMail = await transporter.sendMail({
-                from: `"[PRUEBAS] Corporación ENERJET ⚡" <${process.env.EMAIL_USER}>`, // sender address
-                to: `${this.email}, castecnico@corporacionenerjet.com.pe`, // list of receivers
+                from: `"Corporación ENERJET ⚡" <${process.env.EMAIL_USER}>`, // sender address
+                to: `${this.email}`, // list of receivers
                 subject: `Nuevo registro de solicitud de garantía ${this.idSolicitud}`, // Subject line
                 html: CallServicesMail(this.idSolicitud, this.Cliente, this.observacion, this.CodigoProducto), // html body
             });
