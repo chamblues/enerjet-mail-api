@@ -243,9 +243,9 @@ server.post('/api/gardi/completa-activacion', checkAuth, async (req, res) => {
     try {
         
         const data = req.body
-
-        if (data.name === undefined || data.service_address === undefined) {
-            throw new Error('You made a bad request, parameters name, email and service_address are required.')
+        
+        if (data.name === undefined || data.service_address === undefined || data.CodigoProducto === undefined) {
+            throw new Error('You made a bad request, parameters name, email, CodigoProducto and service_address are required.')
         }
 
         if (!isEmail(data.email)) {

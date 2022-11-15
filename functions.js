@@ -202,7 +202,7 @@ class Mailing {
                 from: `"Corporación ENERJET ⚡" <${process.env.EMAIL_USER}>`, // sender address
                 to: `${this.email}, garantiavirtual@corporacionenerjet.com.pe`, // list of receivers
                 subject: `¡No dejes pasar más tiempo! Activa tu garantía digital y verifica el estado de tu batería en tiempo real.`, // Subject line
-                html: completaActivacionMail(this.name, this.service_address), // html body
+                html: completaActivacionMail(this.name, this.service_address, this.CodigoProducto), // html body
             });
 
             return {
