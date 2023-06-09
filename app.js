@@ -94,15 +94,26 @@ server.post('/api/gardi/callService', checkAuth, async (req, res) => {
 server.post('/api/gardi/bienvenida', checkAuth, async (req, res) => {
     try {
         
-        const data = req.body
+        const data = req.body;
+        const { country } = data;
 
-        if (data.name === undefined || data.email === undefined || data.qr_code === undefined) {
+        if (data.name === undefined || data.email === undefined || data.qr_code === undefined || country === undefined) {
             throw new Error('You made a bad request, parameters name, email and qr_code are required.')
         }
 
         if (!isEmail(data.email)) {
             throw new Error('The email is not valid')
         }
+
+        const ctaMap = {
+            PE: "https://enerjet.com.pe/garantias",
+            NAC: "https://enerjet.com.pe/garantias",
+            VE: "http://enerjet.com.ve/gardi/",
+            EC: "https://enerjet.cl/gardi/",
+            CL: "https://www.enerjet.com.ec/gardi/"
+        }
+
+        data.ctaHref = ctaMap[country] || 'https://enerjet.com.pe/garantias';
 
         const mailing = new Mailing(data)
         const bienvenida = await mailing.bienvenida()

@@ -37,7 +37,8 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 {
     "name": "Christian",
     "email": "christianchangh@gmail.com",
-    "qr_code": "3NI87K"
+    "qr_code": "3NI87K",
+    "country": "PE"
 }
 ```
 #

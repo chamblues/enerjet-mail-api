@@ -20,7 +20,8 @@ class Mailing {
             idSolicitud,
             Cliente,
             observacion,
-            CodigoProducto
+            CodigoProducto,
+            ctaHref
         } = data
     ) {
         this.name = name;
@@ -36,6 +37,7 @@ class Mailing {
         this.Cliente = Cliente;
         this.observacion = observacion;
         this.CodigoProducto = CodigoProducto;
+        this.ctaHref = ctaHref;
     }
 
     async CallServices() {
@@ -72,7 +74,7 @@ class Mailing {
                 from: `"Corporación ENERJET ⚡" <${process.env.EMAIL_USER}>`, // sender address
                 to: `${this.email}, garantiavirtual@corporacionenerjet.com.pe`, // list of receivers
                 subject: "¡Gracias por unirte a Gardi! Ahora tu garantía es digital 🎉", // Subject line
-                html: bienvenidaMail(this.name, this.qr_code), // html body
+                html: bienvenidaMail(this.name, this.qr_code, this.ctaHref), // html body
             });
 
             return {
