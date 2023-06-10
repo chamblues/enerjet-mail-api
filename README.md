@@ -57,7 +57,8 @@ Enviar JSON con los siguientes parámetros, ejemplo:
     "qr_code": "3J19ZX",
     "service_name": "Enerjet Service 01",
     "service_address": "Av. Arequipa 1111, Lima",
-    "maintenance_date": "12/04/2022"
+    "maintenance_date": "12/04/2022",
+    "country": "PE"
 }
 ```
 

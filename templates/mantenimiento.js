@@ -1,4 +1,4 @@
-const mantenimientoMail = (name, qr_code, service_name, service_address, maintenance_date) => {
+const mantenimientoMail = (name, qr_code, service_name, service_address, maintenance_date, ctaHref) => {
     return `
     <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -316,7 +316,7 @@ const mantenimientoMail = (name, qr_code, service_name, service_address, mainten
                           <tbody>
                             <tr>
                               <td style="width:350px;">
-                                <a href="https://enerjet.com.pe/garantias" target="_blank">
+                                <a href="${ctaHref}" target="_blank">
                                   <img height="auto" src="https://enerjet.com.pe/mailings/2022/gardi_bienvenida/btn_cta.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="350" />
                                 </a>
                               </td>

@@ -100,7 +100,7 @@ class Mailing {
                 from: `"Corporación ENERJET ⚡" <${process.env.EMAIL_USER}>`, // sender address
                 to: `${this.email}, garantiavirtual@corporacionenerjet.com.pe`, // list of receivers
                 subject: "Es hora de darle mantenimiento a tu Batería Enerjet ⚡", // Subject line
-                html: mantenimientoMail(this.name, this.qr_code, this.service_name, this.service_address, this.maintenance_date), // html body
+                html: mantenimientoMail(this.name, this.qr_code, this.service_name, this.service_address, this.maintenance_date, this.ctaHref), // html body
             });
 
             return {

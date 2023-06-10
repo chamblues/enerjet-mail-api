@@ -11,7 +11,13 @@ server.use(cors());
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
-
+const ctaMap = {
+    PE: "https://enerjet.com.pe/garantias",
+    NAC: "https://enerjet.com.pe/garantias",
+    VE: "http://enerjet.com.ve/gardi/",
+    EC: "https://enerjet.cl/gardi/",
+    CL: "https://www.enerjet.com.ec/gardi/"
+}
 
 server.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -105,14 +111,6 @@ server.post('/api/gardi/bienvenida', checkAuth, async (req, res) => {
             throw new Error('The email is not valid')
         }
 
-        const ctaMap = {
-            PE: "https://enerjet.com.pe/garantias",
-            NAC: "https://enerjet.com.pe/garantias",
-            VE: "http://enerjet.com.ve/gardi/",
-            EC: "https://enerjet.cl/gardi/",
-            CL: "https://www.enerjet.com.ec/gardi/"
-        }
-
         data.ctaHref = ctaMap[country] || 'https://enerjet.com.pe/garantias';
 
         const mailing = new Mailing(data)
@@ -135,13 +133,15 @@ server.post('/api/gardi/mantenimiento', checkAuth, async (req, res) => {
         
         const data = req.body
 
-        if (data.name === undefined || data.email === undefined || data.qr_code === undefined || data.service_name === undefined || data.service_address === undefined || data.maintenance_date === undefined) {
+        if (data.name === undefined || data.email === undefined || data.qr_code === undefined || data.service_name === undefined || data.service_address === undefined || data.maintenance_date === undefined || country === undefined) {
             throw new Error('You made a bad request, parameters name, email, qr_code, etc. are required.')
         }
 
         if (!isEmail(data.email)) {
             throw new Error('The email is not valid')
         }
+
+        data.ctaHref = ctaMap[country] || 'https://enerjet.com.pe/garantias';
 
         const mailing = new Mailing(data)
         const mantenimiento = await mailing.mantenimiento()
