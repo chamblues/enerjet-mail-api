@@ -15,8 +15,8 @@ const ctaMap = {
     PE: "https://enerjet.com.pe/garantias",
     NAC: "https://enerjet.com.pe/garantias",
     VE: "http://enerjet.com.ve/gardi/",
-    EC: "https://enerjet.cl/gardi/",
-    CL: "https://www.enerjet.com.ec/gardi/"
+    CL: "https://enerjet.cl/gardi/",
+    EC: "https://www.enerjet.com.ec/gardi/"
 }
 
 server.use((req, res, next) => {
