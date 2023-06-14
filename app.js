@@ -12,8 +12,8 @@ server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
 const ctaMap = {
-    PE: "https://enerjet.com.pe/garantias",
-    NAC: "https://enerjet.com.pe/garantias",
+    PE: "https://www.enerjet.com.pe/garantias",
+    NAC: "https://www.enerjet.com.pe/garantias",
     VE: "http://enerjet.com.ve/gardi/",
     CL: "https://enerjet.cl/gardi/",
     EC: "https://www.enerjet.com.ec/gardi/"
@@ -111,7 +111,7 @@ server.post('/api/gardi/bienvenida', checkAuth, async (req, res) => {
             throw new Error('The email is not valid')
         }
 
-        data.ctaHref = ctaMap[country] || 'https://enerjet.com.pe/garantias';
+        data.ctaHref = ctaMap[country] || 'https://www.enerjet.com.pe/garantias';
 
         const mailing = new Mailing(data)
         const bienvenida = await mailing.bienvenida()
@@ -141,7 +141,7 @@ server.post('/api/gardi/mantenimiento', checkAuth, async (req, res) => {
             throw new Error('The email is not valid')
         }
 
-        data.ctaHref = ctaMap[country] || 'https://enerjet.com.pe/garantias';
+        data.ctaHref = ctaMap[country] || 'https://www.enerjet.com.pe/garantias';
 
         const mailing = new Mailing(data)
         const mantenimiento = await mailing.mantenimiento()
