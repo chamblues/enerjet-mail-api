@@ -111,7 +111,9 @@ server.post('/api/gardi/bienvenida', checkAuth, async (req, res) => {
             throw new Error('The email is not valid')
         }
 
-        data.ctaHref = ctaMap[country] || 'https://www.enerjet.com.pe/garantias';
+        const cta = `${ctaMap[country]}?findByCodId=${data.qr_code}`;
+
+        data.ctaHref = cta || 'https://www.enerjet.com.pe/garantias';
 
         const mailing = new Mailing(data)
         const bienvenida = await mailing.bienvenida()
@@ -141,7 +143,9 @@ server.post('/api/gardi/mantenimiento', checkAuth, async (req, res) => {
             throw new Error('The email is not valid')
         }
 
-        data.ctaHref = ctaMap[country] || 'https://www.enerjet.com.pe/garantias';
+        const cta = `${ctaMap[country]}?findByCodId=${data.qr_code}`;
+
+        data.ctaHref = cta || 'https://www.enerjet.com.pe/garantias';
 
         const mailing = new Mailing(data)
         const mantenimiento = await mailing.mantenimiento()
