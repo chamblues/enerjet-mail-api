@@ -114,6 +114,8 @@ server.post('/api/gardi/bienvenida', checkAuth, async (req, res) => {
         const cta = `${ctaMap[country]}?findByCodId=${data.qr_code}`;
 
         data.ctaHref = cta || 'https://www.enerjet.com.pe/garantias';
+        data.banner = country === 'EC' ? 'https://enerjet.com.pe/mailings/2022/gardi_bienvenida/banner-ecuador.jpg' : 'https://enerjet.com.pe/mailings/2022/gardi_bienvenida/banner.jpg';
+        data.supportEmail = country === 'EC' ? 'ventas@bateparts.com' : 'garantiavirtual@corporacionenerjet.com.pe';
 
         const mailing = new Mailing(data)
         const bienvenida = await mailing.bienvenida()

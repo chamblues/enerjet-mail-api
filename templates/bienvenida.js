@@ -1,4 +1,4 @@
-const bienvenidaMail = (name, qr_code, ctaHref) => {
+const bienvenidaMail = (name, qr_code, ctaHref, banner = 'https://enerjet.com.pe/mailings/2022/gardi_bienvenida/banner.jpg', supportEmail) => {
     return `
     <!doctype html>
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -139,7 +139,7 @@ const bienvenidaMail = (name, qr_code, ctaHref) => {
                               <tbody>
                                 <tr>
                                   <td style="width:595px;">
-                                    <img height="auto" src="https://enerjet.com.pe/mailings/2022/gardi_bienvenida/banner.jpg" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="595" />
+                                    <img height="auto" src="${banner}" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="595" />
                                   </td>
                                 </tr>
                               </tbody>
@@ -336,7 +336,7 @@ const bienvenidaMail = (name, qr_code, ctaHref) => {
                         </tr>
                         <tr>
                           <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                            <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#000000;"><a href="mailto:garantiavirtual@corporacionenerjet.com.pe " style="color: #000">garantiavirtual@corporacionenerjet.com.pe </a></div>
+                            <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#000000;"><a href="mailto:${supportEmail}" style="color: #000">${supportEmail}</a></div>
                           </td>
                         </tr>
                       </tbody>
