@@ -17,7 +17,8 @@ const ctaMap = {
     VE: "http://enerjet.com.ve/gardi/",
     CL: "https://enerjet.cl/gardi/",
     EC: "https://www.enerjet.com.ec/gardi/",
-    SV: "https://www.enerjet.com.do/gardi/",
+    DO: "https://www.enerjet.com.do/gardi/",
+    SV: "https://www.enerjet.com.sv/gardi/",
     NI: "https://www.enerjet.com.ni/gardi/",
     PA: "https://www.enerjet.com.pa/gardi/",
     CR: "https://www.enerjet.co.cr/gardi/"
