@@ -69,7 +69,7 @@ app.listen(API_PORT, () => {
 	console.log("Listening on port:", API_PORT);
 });
 
-app.use("/api", gardi);
+app.use("/mail/api", gardi);
 // Middleware for header authentication
 
 
