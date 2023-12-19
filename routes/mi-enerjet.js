@@ -13,7 +13,7 @@ router.post("/mi-enerjet/reporte",  async (req, res) => {
         
 		const data = req.body;
 
-		if (data.name === undefined || data.email === undefined || data.subject === undefined || data.template === undefined ) {
+		if (data.email === undefined || data.subject === undefined || data.template === undefined ) {
 			throw new Error("You made a bad request, parameters name, email, subject and template are required.");
 		}
 
