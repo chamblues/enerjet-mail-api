@@ -1,8 +1,10 @@
+require('module-alias/register')
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const msal = require("@azure/msal-node");
 const gardi = require("./routes/gardi");
+const miEnerjet = require("./routes/mi-enerjet");
 
 // const session = require("express-session");  // DELETE THIS PACKAGE
 // const flash = require("connect-flash");
@@ -70,6 +72,6 @@ app.listen(API_PORT, () => {
 });
 
 app.use("/api", gardi);
+app.use("/api", miEnerjet);
 // Middleware for header authentication
-
 

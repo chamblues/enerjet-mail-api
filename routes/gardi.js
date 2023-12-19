@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const checkAuth = require('../middleware/check-auth');
-const graph = require("../graph");
-const getAccessToken = require("../functions/getAccessToken");
-const { Mailing } = require("../functions/functions");
-const { isEmail } = require("../helpers");
+const checkAuth = require('@app/middleware/check-auth');
+const graph = require("@app/graph");
+const getAccessToken = require("@app/functions/getAccessToken");
+const { Mailing } = require("@app/functions/send-emails/gardi");
+const { isEmail } = require("@app/helpers");
 
 const ctaMap = {
 	PE: "https://www.enerjet.com.pe/garantias",
@@ -18,7 +18,6 @@ const ctaMap = {
 	PA: "https://www.enerjet.com.pa/gardi/",
 	CR: "https://www.enerjet.co.cr/gardi/",
 };
-
 router.use(checkAuth);
 
 // router.get("/gardi/debug", async (req, res) => {

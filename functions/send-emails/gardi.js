@@ -1,12 +1,12 @@
-const { transporter } = require('../config')
-const bienvenidaMail = require('../templates/bienvenida')
-const mantenimientoMail = require('../templates/mantenimiento')
-const recordatorioMail = require('../templates/recordatorio')
-const perdidaGarantiaMail = require('../templates/perdida-garantia')
-const renovacionMail = require('../templates/renovacion')
-const completaActivacionMail = require('../templates/completa-activacion')
-const CallServicesMail = require('../templates/call-services')
-const graph = require("../graph");
+const { transporter } = require('@app/config')
+const bienvenidaMail = require('@app/templates/bienvenida')
+const mantenimientoMail = require('@app/templates/mantenimiento')
+const recordatorioMail = require('@app/templates/recordatorio')
+const perdidaGarantiaMail = require('@app/templates/perdida-garantia')
+const renovacionMail = require('@app/templates/renovacion')
+const completaActivacionMail = require('@app/templates/completa-activacion')
+const CallServicesMail = require('@app/templates/call-services')
+const graph = require("@app/graph");
 
 const createEmail = (emailObj) => ({
 	subject: emailObj.subject,
@@ -32,7 +32,7 @@ const createEmail = (emailObj) => ({
     from: {
         emailAddress: {
             address: "garantiavirtual@corporacionenerjet.com.pe",
-            name: "Corporación ENERJET ⚡"
+            // name: "Corporación ENERJET ⚡"
         }
     }
 });

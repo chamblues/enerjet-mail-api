@@ -21,10 +21,14 @@
     "express-session": "^1.17.3",
     "isomorphic-fetch": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.3",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",
     "nodemailer": "^6.7.3",
     "pm2": "^5.2.2",
     "windows-iana": "^5.0.2"
+  },
+  "_moduleAliases": {
+    "@app": "."
   }
 }

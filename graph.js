@@ -3,7 +3,7 @@ require("isomorphic-fetch");
 
 const sendEmail = async (responseToken, mail) => {
 	try {
-		const userEmail = "garantiavirtual@corporacionenerjet.com.pe";
+		const userEmail = mail.from.emailAddress.address;
 
 		const client = getAuthenticatedClient(responseToken);
 
