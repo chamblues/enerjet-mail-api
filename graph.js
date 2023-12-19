@@ -9,7 +9,7 @@ const sendEmail = async (responseToken, mail) => {
 
 		await client.api(`/users/${userEmail}/sendMail`).post({ message: mail });
 		
-		console.log('Email was sent successfully')
+		console.log('Email was sent successfully', mail.toRecipients)
 
 		return 'sent';
 

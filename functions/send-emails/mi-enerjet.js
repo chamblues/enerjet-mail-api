@@ -12,7 +12,17 @@ const createEmail = (emailObj) => ({
 	ccRecipients: [
 		{
 			emailAddress: {
-				address: "garantiavirtual@corporacionenerjet.com.pe",
+				address: "cascomercial@corporacionenerjet.com.pe",
+			},
+		},
+		{
+			emailAddress: {
+				address: "televentas1@corporacionenerjet.com.pe",
+			},
+		},
+		{
+			emailAddress: {
+				address: "televentas@corporacionenerjet.com.pe",
 			},
 		},
 	],
