@@ -15,7 +15,7 @@ const checkAuth = (req, res, next) => {
 			return res.status(403).send("Forbidden (Error 403): Invalid token");
 		}
 
-		if (decoded.username === "enerjet" && decoded.password === "Mailings2022!") {
+		if (decoded.username === process.env.JWT_USERNAME && decoded.password === process.env.JWT_PASSWORD) {
 			return next();
 		}
 
