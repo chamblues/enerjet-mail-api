@@ -9,23 +9,7 @@ const createEmail = (emailObj) => ({
 			},
 		},
 	],
-	ccRecipients: [
-		{
-			emailAddress: {
-				address: "cascomercial@corporacionenerjet.com.pe",
-			},
-		},
-		{
-			emailAddress: {
-				address: "televentas1@corporacionenerjet.com.pe",
-			},
-		},
-		{
-			emailAddress: {
-				address: "televentas@corporacionenerjet.com.pe",
-			},
-		},
-	],
+	ccRecipients: emailObj.ccEmails,
 	body: {
 		content: emailObj.html,
 		contentType: "html",
@@ -39,19 +23,30 @@ const createEmail = (emailObj) => ({
 });
 
 class Mailing {
-	constructor({ name, email, subject, template } = data) {
+	constructor({ name, email, subject, template, ccRecipients } = data) {
 		this.name = name;
 		this.email = email;
 		this.subject = subject;
 		this.template = template;
+		this.ccRecipients = ccRecipients;
 	}
 
 	async reporte(token) {
 		try {
+			const hasCcEmails = this.ccRecipients?.length > 0;
+			const ccEmails = hasCcEmails
+				? this.ccRecipients.split(",").map((email) => ({
+						emailAddress: {
+							address: email.trim(),
+						},
+				})) : [];
+				
+
 			const sendMail = {
 				to: this.email, // list of receivers
 				subject: this.subject, // Subject line
 				html: this.template, // html body
+				ccEmails
 			};
 
 			const emailTemplate = createEmail(sendMail);
