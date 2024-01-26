@@ -69,6 +69,9 @@ router.post("/gardi/bienvenida",  async (req, res) => {
 		const data = req.body;
 		const { country } = data;
 
+		console.log('==== data ===', data);
+		console.log('==== country ======', country)
+
 		if (data.name === undefined || data.email === undefined || data.qr_code === undefined || country === undefined) {
 			throw new Error("You made a bad request, parameters name, email and qr_code are required.");
 		}
@@ -87,6 +90,8 @@ router.post("/gardi/bienvenida",  async (req, res) => {
 
 		const mailing = new Mailing(data);
 		const bienvenida = await mailing.bienvenida(responseToken);
+
+		
 
 		return res.status(200).json(bienvenida);
 	} catch (error) {
