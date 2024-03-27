@@ -30,6 +30,41 @@ class Mailing {
 		this.template = template;
 		this.ccRecipients = ccRecipients;
 	}
+	async custom(token) {
+		try {
+			const hasCcEmails = this.ccRecipients?.length > 0;
+			const ccEmails = hasCcEmails
+				? this.ccRecipients.split(",").map((email) => ({
+						emailAddress: {
+							address: email.trim(),
+						},
+				})) : [];
+				
+
+			const sendMail = {
+				to: this.email, // list of receivers
+				subject: this.subject, // Subject line
+				html: this.template, // html body
+				ccEmails
+			};
+
+			const emailTemplate = createEmail(sendMail);
+
+			const sendEmailResponse = await graph.sendEmail(token, emailTemplate);
+
+			if (sendEmailResponse !== "sent") throw new Error("Something happened sending the email.");
+
+			return {
+				status: "successful",
+				message: "The email was sent",
+			};
+		} catch (error) {
+			return {
+				status: "failed",
+				message: "There was a problem sending the email",
+			};
+		}
+	}
 
 	async distribuidores(token) {
 		try {
