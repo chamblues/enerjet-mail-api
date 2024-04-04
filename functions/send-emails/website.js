@@ -153,12 +153,11 @@ class Mailing {
 
 	async libroDeRelamaciones(token) {
 
-		console.log('========= this =======', this)
 
 		try {
             const sendMail = {
                 to: this.email, // list of receivers
-                subject: "¡Gracias por unirte a Gardi! Ahora tu garantía es digital 🎉", // Subject line
+                subject: "Registro recibido en nuestro Libro de Reclamaciones", // Subject line
                 html: libroDeReclamaciones(this), // html body
             };
 
