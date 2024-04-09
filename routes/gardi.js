@@ -90,7 +90,7 @@ router.post("/gardi/bienvenida",  async (req, res) => {
 		const responseToken = await getAccessToken(req);
 
 		const mailing = new Mailing(data);
-		const bienvenida = await mailing.bienvenida(responseToken);
+		const bienvenida = country == "TT" ? await mailing.bienvenidaInternacional(responseToken) : await mailing.bienvenida(responseToken);
 
 		
 

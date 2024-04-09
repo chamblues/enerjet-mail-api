@@ -1,5 +1,6 @@
 const { transporter } = require('@app/config')
 const bienvenidaMail = require('@app/templates/bienvenida')
+const bienvenidaMailInternacional = require('@app/templates/bienvenidaInternacional')
 const mantenimientoMail = require('@app/templates/mantenimiento')
 const recordatorioMail = require('@app/templates/recordatorio')
 const perdidaGarantiaMail = require('@app/templates/perdida-garantia')
@@ -114,6 +115,36 @@ class Mailing {
                 to: this.email, // list of receivers
                 subject: "¡Gracias por unirte a Gardi! Ahora tu garantía es digital 🎉", // Subject line
                 html: bienvenidaMail(this.name, this.qr_code, this.ctaHref, this.banner, this.supportEmail), // html body
+            };
+
+            const emailTemplate = createEmail(sendMail);
+
+            const sendEmailResponse = await graph.sendEmail(token, emailTemplate)
+
+            if(sendEmailResponse !== 'sent') throw new Error ('Something happened sending the email.')
+
+
+            return {
+                status: 'successful',
+                message: 'The email was sent',
+            }
+
+        } catch (error) {
+            return {
+                status: 'failed',
+                message: 'There was a problem sending the email'
+            }
+        }
+
+    }
+    async bienvenidaInternacional(token) {
+
+
+        try {
+            const sendMail = {
+                to: this.email, // list of receivers
+                subject: "Thank you for joining Gardi! Your warranty is now digital 🎉", // Subject line
+                html: bienvenidaMailInternacional(this.name, this.qr_code, this.ctaHref, this.banner, this.supportEmail), // html body
             };
 
             const emailTemplate = createEmail(sendMail);
