@@ -1,6 +1,6 @@
-const express = require('express')
-const router = express.Router()
-const checkAuth = require('@app/middleware/check-auth');
+const express = require("express");
+const router = express.Router();
+const checkAuth = require("@app/middleware/check-auth");
 const graph = require("@app/graph");
 const getAccessToken = require("@app/functions/getAccessToken");
 const { Mailing } = require("@app/functions/send-emails/gardi");
@@ -65,13 +65,13 @@ router.post("/gardi/callService", async (req, res) => {
 	}
 });
 
-router.post("/gardi/bienvenida",  async (req, res) => {
+router.post("/gardi/bienvenida", async (req, res) => {
 	try {
 		const data = req.body;
 		const { country } = data;
 
-		console.log('==== data ===', data);
-		console.log('==== country ======', country)
+		console.log("==== data ===", data);
+		console.log("==== country ======", country);
 
 		if (data.name === undefined || data.email === undefined || data.qr_code === undefined || country === undefined) {
 			throw new Error("You made a bad request, parameters name, email and qr_code are required.");
@@ -84,15 +84,24 @@ router.post("/gardi/bienvenida",  async (req, res) => {
 		const cta = `${ctaMap[country]}?findByCodId=${data.qr_code}`;
 
 		data.ctaHref = cta || "https://www.enerjet.com.pe/garantias";
-		data.banner = country === "EC" ? "https://enerjet.com.pe/mailings/2022/gardi_bienvenida/banner-ecuador.jpg" : "https://enerjet.com.pe/mailings/2022/gardi_bienvenida/banner.jpg";
+
+		switch (country) {
+			case "EC":
+				data.banner = "https://enerjet.com.pe/mailings/2022/gardi_bienvenida/banner-ecuador.jpg";
+				break;
+			case "TT":
+				data.banner = "https://enerjet.com.pe/mailings/2024/gardi_bienvenida_internacional/banner-internacional.png";
+				break;
+			default:
+				data.banner = "https://enerjet.com.pe/mailings/2022/gardi_bienvenida/banner.jpg";
+		}
+
 		data.supportEmail = country === "EC" ? "ventas@bateparts.com" : "garantiavirtual@corporacionenerjet.com.pe";
 
 		const responseToken = await getAccessToken(req);
 
 		const mailing = new Mailing(data);
 		const bienvenida = country == "TT" ? await mailing.bienvenidaInternacional(responseToken) : await mailing.bienvenida(responseToken);
-
-		
 
 		return res.status(200).json(bienvenida);
 	} catch (error) {
