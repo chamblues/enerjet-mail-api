@@ -17,7 +17,8 @@ const ctaMap = {
 	NI: "https://www.enerjet.com.ni/gardi/",
 	PA: "https://www.enerjet.com.pa/gardi/",
 	CR: "https://www.enerjet.co.cr/gardi/",
-	BO: "https://enerjet.com.bo/garantia/"
+	BO: "https://enerjet.com.bo/garantia/",
+	TT: "https://enerjet.com.tt/gardi/",
 };
 router.use(checkAuth);
 

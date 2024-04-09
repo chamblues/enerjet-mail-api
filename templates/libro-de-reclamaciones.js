@@ -256,10 +256,6 @@ const libroDeReclamaciones = (data) => {
                             <td style="padding: 0 15px;">${data?.info_request || ""}</td>
                           </tr>
                           <tr>
-                            <td style="padding: 0 15px 0 0;">Documento adjunto:</td>
-                            <td style="padding: 0 15px;">${data?.provinces || ""}</td>
-                          </tr>
-                          <tr>
                             <td style="padding: 0 15px 0 0;">Fecha de solicitud:</td>
                             <td style="padding: 0 15px;">${data?.created_at || ""}</td>
                           </tr>
