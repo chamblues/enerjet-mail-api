@@ -12,7 +12,7 @@ const createEmail = (emailObj) => ({
 	],
 	ccRecipients: emailObj.ccEmails,
 	body: {
-		content: decodeURIComponent(emailObj.html),
+		content: emailObj.html,
 		contentType: "html",
 	},
 	from: {
