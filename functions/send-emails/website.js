@@ -153,12 +153,19 @@ class Mailing {
 
 	async libroDeRelamaciones(token) {
 
+		const copyToEmails = "cascomercial@corporacionenerjet.com.pe, televentas@corporacionenerjet.com.pe, televentas1@corporacionenerjet.com.pe"
+		const ccEmails = copyToEmails.split(",").map((email) => ({
+				emailAddress: {
+					address: email.trim(),
+				},
+		}));
 
 		try {
             const sendMail = {
                 to: this.email, // list of receivers
                 subject: "Registro recibido en nuestro Libro de Reclamaciones", // Subject line
                 html: libroDeReclamaciones(this), // html body
+				ccEmails
             };
 
             const emailTemplate = createEmail(sendMail);
