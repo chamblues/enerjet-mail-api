@@ -259,6 +259,10 @@ const libroDeReclamaciones = (data) => {
                             <td style="padding: 0 15px 0 0;">Fecha de solicitud:</td>
                             <td style="padding: 0 15px;">${data?.created_at || ""}</td>
                           </tr>
+                          <tr>
+                            <td style="padding: 0 15px 0 0;">Documento:</td>
+                            <td style="padding: 0 15px;">${data?.fileUrl ? `https://www.enerjet.com.pe/admin/uploads/libro-de-reclamaciones/${data?.fileUrl}` : ""}</td>
+                          </tr>
                         </table>
                       </td>
                     </tr>

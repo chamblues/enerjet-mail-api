@@ -30,6 +30,7 @@ class Mailing {
 		subject, 
 		template, 
 		ccRecipients,
+		countryCode = 'PE',
 
 		firstname,
 		lastname,
@@ -56,6 +57,7 @@ class Mailing {
 		this.subject = subject;
 		this.template = template;
 		this.ccRecipients = ccRecipients;
+		this.countryCode = countryCode;
 		
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -78,7 +80,7 @@ class Mailing {
 		this.created_at = created_at;
 	}
 
-	
+
 	async custom(token) {
 		try {
 			const hasCcEmails = this.ccRecipients?.length > 0;
