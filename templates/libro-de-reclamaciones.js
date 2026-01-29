@@ -261,7 +261,7 @@ const libroDeReclamaciones = (data) => {
                           </tr>
                           <tr>
                             <td style="padding: 0 15px 0 0;">Documento:</td>
-                            <td style="padding: 0 15px;">${data?.fileUrl ? `https://www.enerjet.com.pe/admin/uploads/libro-de-reclamaciones/${data?.fileUrl}` : ""}</td>
+                            <td style="padding: 0 15px;">${data?.fileUrl ? `<a href="https://www.enerjet.com.pe/admin/uploads/libro-de-reclamaciones/${data?.fileUrl}">Descargar ${data?.fileUrl}</a>` : ""}</td>
                           </tr>
                         </table>
                       </td>
