@@ -135,4 +135,51 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 }
 ```
 
+#
+
+### Email Custom (Website) Endpoint
+Method **POST**
+Headers **Content-Type: application/json**
+```
+https://www.enerjet.com.pe/mail/api/website/custom
+```
+Enviar JSON con los siguientes parámetros, ejemplo sin adjuntos:
+```json
+{
+    "email": "destinatario@ejemplo.com",
+    "subject": "Asunto del correo",
+    "template": "<html><body><h1>Hola</h1></body></html>"
+}
+```
+
+Ejemplo con adjuntos en Base64 (máximo **6MB** en total):
+```json
+{
+    "email": "destinatario@ejemplo.com",
+    "subject": "Correo con adjunto",
+    "template": "<html><body><h1>Revisa el adjunto</h1></body></html>",
+    "ccRecipients": "copia1@ejemplo.com, copia2@ejemplo.com",
+    "attachments": [
+        {
+            "name": "documento.pdf",
+            "contentType": "application/pdf",
+            "contentBytes": "JVBERi0xLjQK... (contenido en Base64)"
+        }
+    ]
+}
+```
+
+| Parámetro | Tipo | Requerido | Descripción |
+|-----------|------|-----------|-------------|
+| `email` | string | ✅ | Email del destinatario |
+| `subject` | string | ✅ | Asunto del correo |
+| `template` | string | ✅ | Cuerpo del email en HTML |
+| `ccRecipients` | string | ❌ | Emails en copia separados por coma |
+| `attachments` | array | ❌ | Archivos adjuntos en Base64 |
+| `attachments[].name` | string | ✅* | Nombre del archivo (ej: "doc.pdf") |
+| `attachments[].contentType` | string | ✅* | MIME type (ej: "application/pdf") |
+| `attachments[].contentBytes` | string | ✅* | Contenido del archivo en Base64 |
+
+> *Requerido si se envía `attachments`
+
 That's it... ¡Happy coding!

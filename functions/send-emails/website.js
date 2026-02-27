@@ -1,36 +1,51 @@
 const graph = require("../../graph");
 const libroDeReclamaciones = require('@app/templates/libro-de-reclamaciones')
 
-const createEmail = (emailObj) => ({
-	subject: emailObj.subject,
-	toRecipients: [
-		{
+const createEmail = (emailObj) => {
+	const email = {
+		subject: emailObj.subject,
+		toRecipients: [
+			{
+				emailAddress: {
+					address: emailObj.to,
+				},
+			},
+		],
+		ccRecipients: emailObj.ccEmails,
+		body: {
+			content: emailObj.html,
+			contentType: "html",
+		},
+		from: {
 			emailAddress: {
-				address: emailObj.to,
+				address: "atencionalcliente@corporacionenerjet.com.pe",
+				// name: "Corporación ENERJET ⚡",
 			},
 		},
-	],
-	ccRecipients: emailObj.ccEmails,
-	body: {
-		content: emailObj.html,
-		contentType: "html",
-	},
-	from: {
-		emailAddress: {
-			address: "atencionalcliente@corporacionenerjet.com.pe",
-			// name: "Corporación ENERJET ⚡",
-		},
-	},
-});
+	};
+
+	// Add attachments if provided
+	if (emailObj.attachments && emailObj.attachments.length > 0) {
+		email.attachments = emailObj.attachments.map((att) => ({
+			"@odata.type": "#microsoft.graph.fileAttachment",
+			name: att.name,
+			contentType: att.contentType,
+			contentBytes: att.contentBytes,
+		}));
+	}
+
+	return email;
+};
 
 class Mailing {
-	constructor({ 
-		name, 
-		email, 
-		subject, 
-		template, 
+	constructor({
+		name,
+		email,
+		subject,
+		template,
 		ccRecipients,
 		countryCode = 'PE',
+		attachments,
 
 		firstname,
 		lastname,
@@ -51,14 +66,15 @@ class Mailing {
 		info_request,
 		fileUrl,
 		created_at
-		} = data) {
+	} = data) {
 		this.name = name;
 		this.email = email;
 		this.subject = subject;
 		this.template = template;
 		this.ccRecipients = ccRecipients;
 		this.countryCode = countryCode;
-		
+		this.attachments = attachments || [];
+
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.identification = identification;
@@ -86,17 +102,18 @@ class Mailing {
 			const hasCcEmails = this.ccRecipients?.length > 0;
 			const ccEmails = hasCcEmails
 				? this.ccRecipients.split(",").map((email) => ({
-						emailAddress: {
-							address: email.trim(),
-						},
+					emailAddress: {
+						address: email.trim(),
+					},
 				})) : [];
-				
+
 
 			const sendMail = {
 				to: this.email, // list of receivers
 				subject: this.subject, // Subject line
 				html: this.template, // html body
-				ccEmails
+				ccEmails,
+				attachments: this.attachments
 			};
 
 			const emailTemplate = createEmail(sendMail);
@@ -122,11 +139,11 @@ class Mailing {
 			const hasCcEmails = this.ccRecipients?.length > 0;
 			const ccEmails = hasCcEmails
 				? this.ccRecipients.split(",").map((email) => ({
-						emailAddress: {
-							address: email.trim(),
-						},
+					emailAddress: {
+						address: email.trim(),
+					},
 				})) : [];
-				
+
 
 			const sendMail = {
 				to: this.email, // list of receivers
@@ -157,37 +174,37 @@ class Mailing {
 
 		const copyToEmails = "cascomercial@corporacionenerjet.com.pe, televentas@corporacionenerjet.com.pe, televentas1@corporacionenerjet.com.pe"
 		const ccEmails = copyToEmails.split(",").map((email) => ({
-				emailAddress: {
-					address: email.trim(),
-				},
+			emailAddress: {
+				address: email.trim(),
+			},
 		}));
 
 		try {
-            const sendMail = {
-                to: this.email, // list of receivers
-                subject: "Registro recibido en nuestro Libro de Reclamaciones", // Subject line
-                html: libroDeReclamaciones(this), // html body
+			const sendMail = {
+				to: this.email, // list of receivers
+				subject: "Registro recibido en nuestro Libro de Reclamaciones", // Subject line
+				html: libroDeReclamaciones(this), // html body
 				ccEmails
-            };
+			};
 
-            const emailTemplate = createEmail(sendMail);
+			const emailTemplate = createEmail(sendMail);
 
-            const sendEmailResponse = await graph.sendEmail(token, emailTemplate)
+			const sendEmailResponse = await graph.sendEmail(token, emailTemplate)
 
-            if(sendEmailResponse !== 'sent') throw new Error ('Something happened sending the email.')
+			if (sendEmailResponse !== 'sent') throw new Error('Something happened sending the email.')
 
 
-            return {
-                status: 'successful',
-                message: 'The email was sent',
-            }
+			return {
+				status: 'successful',
+				message: 'The email was sent',
+			}
 
-        } catch (error) {
-            return {
-                status: 'failed',
-                message: 'There was a problem sending the email'
-            }
-        }
+		} catch (error) {
+			return {
+				status: 'failed',
+				message: 'There was a problem sending the email'
+			}
+		}
 	}
 }
 
