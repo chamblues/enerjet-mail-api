@@ -137,6 +137,40 @@ Enviar JSON con los siguientes parámetros, ejemplo:
 
 #
 
+### Email Reporte (Mi Enerjet) Endpoint
+Method **POST**
+Headers **Content-Type: application/json**
+```
+https://www.enerjet.com.pe/mail/api/mi-enerjet/reporte
+```
+Enviar JSON con los siguientes parámetros, ejemplo sin adjuntos:
+```json
+{
+    "email": "destinatario@ejemplo.com",
+    "subject": "Asunto de reporte",
+    "template": "<html><body><h1>Reporte</h1></body></html>"
+}
+```
+
+Ejemplo con adjuntos en Base64 (máximo **6MB** en total):
+```json
+{
+    "email": "destinatario@ejemplo.com",
+    "subject": "Reporte adjunto",
+    "template": "<html><body><h1>Revisa el reporte</h1></body></html>",
+    "ccRecipients": "copia1@ejemplo.com",
+    "attachments": [
+        {
+            "name": "reporte.xlsx",
+            "contentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "contentBytes": "UEsDBBQAAAAI... (contenido en Base64)"
+        }
+    ]
+}
+```
+
+#
+
 ### Email Custom (Website) Endpoint
 Method **POST**
 Headers **Content-Type: application/json**

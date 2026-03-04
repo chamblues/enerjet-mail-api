@@ -1,34 +1,49 @@
 const graph = require("../../graph");
 
-const createEmail = (emailObj) => ({
-	subject: emailObj.subject,
-	toRecipients: [
-		{
+const createEmail = (emailObj) => {
+	const email = {
+		subject: emailObj.subject,
+		toRecipients: [
+			{
+				emailAddress: {
+					address: emailObj.to,
+				},
+			},
+		],
+		ccRecipients: emailObj.ccEmails,
+		body: {
+			content: emailObj.html,
+			contentType: "html",
+		},
+		from: {
 			emailAddress: {
-				address: emailObj.to,
+				address: "atencionalcliente@corporacionenerjet.com.pe",
+				// name: "Corporación ENERJET ⚡",
 			},
 		},
-	],
-	ccRecipients: emailObj.ccEmails,
-	body: {
-		content: emailObj.html,
-		contentType: "html",
-	},
-	from: {
-		emailAddress: {
-			address: "atencionalcliente@corporacionenerjet.com.pe",
-			// name: "Corporación ENERJET ⚡",
-		},
-	},
-});
+	};
+
+	// Add attachments if provided
+	if (emailObj.attachments && emailObj.attachments.length > 0) {
+		email.attachments = emailObj.attachments.map((att) => ({
+			"@odata.type": "#microsoft.graph.fileAttachment",
+			name: att.name,
+			contentType: att.contentType,
+			contentBytes: att.contentBytes,
+		}));
+	}
+
+	return email;
+};
 
 class Mailing {
-	constructor({ name, email, subject, template, ccRecipients } = data) {
+	constructor({ name, email, subject, template, ccRecipients, attachments } = data) {
 		this.name = name;
 		this.email = email;
 		this.subject = subject;
 		this.template = template;
 		this.ccRecipients = ccRecipients;
+		this.attachments = attachments || [];
 	}
 
 	async reporte(token) {
@@ -36,17 +51,18 @@ class Mailing {
 			const hasCcEmails = this.ccRecipients?.length > 0;
 			const ccEmails = hasCcEmails
 				? this.ccRecipients.split(",").map((email) => ({
-						emailAddress: {
-							address: email.trim(),
-						},
+					emailAddress: {
+						address: email.trim(),
+					},
 				})) : [];
-				
+
 
 			const sendMail = {
 				to: this.email, // list of receivers
 				subject: this.subject, // Subject line
 				html: this.template, // html body
-				ccEmails
+				ccEmails,
+				attachments: this.attachments
 			};
 
 			const emailTemplate = createEmail(sendMail);
